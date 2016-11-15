@@ -54,7 +54,7 @@ $ docker build -t gcr.io/<project_id>/mattermost-lb
 $ gcloud docker push gcr.io/<project_id>/mattermost-lb:latest
 ```
 
-#### Create the reverse proxy deployment and the Load-Balancer service: 
+#### Create the reverse proxy deployment and the load-balancer service: 
 
 ```console
 $ kubectl create -f mattermost-lb-deployment.yaml
