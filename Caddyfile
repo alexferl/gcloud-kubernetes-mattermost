@@ -1,0 +1,14 @@
+http://mm.example.com {
+    redir https://mm.example.com{uri}
+}
+
+https://mm.example.com {
+    errors stderr
+    log / stdout "{remote} - [{when}] {method} {uri} {proto} {status} {size} {>Referer} {>User-Agent}"
+    tls server.crt server.key
+
+    proxy / mattermost-app:8065 {
+        transparent
+        websocket
+    }
+}

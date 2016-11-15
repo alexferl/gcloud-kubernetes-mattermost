@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mattermost-pg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mattermost-pg
+  template:
+    metadata:
+      labels:
+        app: mattermost-pg
+    spec:
+      containers:
+      - name: postgres
+        image: mattermost/mattermost-prod-db:3
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+        - name: postgres
+          mountPath: /var/lib/postgresql/data
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        env:
+        - name: MM_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-creds
+              key: username
+        - name: MM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-creds
+              key: password
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/pgdata"
+        resources:
+          limits:
+            cpu: "0.1"
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+      - name: postgres
+        gcePersistentDisk:
+          pdName: mattermost-postgres
+          fsType: "ext4"
+      restartPolicy: Always

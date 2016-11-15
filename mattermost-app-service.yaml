@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mattermost-app
+spec:
+  type: NodePort
+  selector:
+    app: mattermost-app
+  ports:
+  - name: mattermost-port
+    port: 8065
+    targetPort: 8065

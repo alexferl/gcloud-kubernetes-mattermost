@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: mattermost-lb
+  labels:
+    app: mattermost-lb
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mattermost-lb
+    spec:
+      containers:
+      - name: mattermost-lb
+        image: gcr.io/<project_id>/mattermost-lb:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources:
+          limits:
+            cpu: "0.1"

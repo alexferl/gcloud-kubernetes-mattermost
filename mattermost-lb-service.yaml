@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mattermost-lb
+  labels:
+    app: mattermost-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  - name: https
+    port: 443
+    protocol: TCP
+  selector:
+    app: mattermost-lb
