@@ -1,6 +1,4 @@
 # gcloud-kubernetes-mattermost
-Mattermost on Google Cloud's Container Engine
-
 This is a basic set of resources to get Mattermost running on Google Container Engine with TLS.
 
 #### Clone the repo:
