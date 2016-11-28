@@ -1,5 +1,5 @@
 # gcloud-kubernetes-mattermost
-This is a basic set of resources to get Mattermost running on Google Container Engine with TLS.
+This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) running on Google Container Engine with TLS. This guide assumes you have a working [Container Engine](https://cloud.google.com/container-engine/) cluster setup.
 
 1.
 Clone the repo:
@@ -47,16 +47,16 @@ If you want to change their names, make sure you edit the `Dockerfile` and `Cadd
 
 You will also want to edit the `Caddyfile` and replace `mm.example.com` with your own domain.
 
-Alternatively, Caddy supports [Automatic TLS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead.
+Alternatively, Caddy supports [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead. If you do, make sure you remove the certificate and key from the `Dockerfile` and `Caddyfile`.
 
 9.
-Build and push the reverse proxy container:
+Build and push the [Caddy](https://caddyserver.com/) reverse proxy container:
 ```console
 $ docker build -t gcr.io/<project_id>/mattermost-lb
 $ gcloud docker push gcr.io/<project_id>/mattermost-lb:latest
 ```
 10.
-Create the reverse proxy deployment and the load-balancer service: 
+Create the reverse proxy deployment and the load-balancer service (make sure you change the `<project_id>` in the deployment file: 
 ```console
 $ kubectl create -f mattermost-lb-deployment.yaml
 $ kubectl create -f mattermost-lb-service.yaml
