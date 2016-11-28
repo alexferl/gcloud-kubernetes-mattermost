@@ -1,5 +1,5 @@
 # gcloud-kubernetes-mattermost
-This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) running on Google Container Engine with TLS. This guide assumes you have a working [Container Engine](https://cloud.google.com/container-engine/) cluster setup.
+This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) running on [Google Container Engine](https://cloud.google.com/container-engine/) with TLS. This guide assumes you already have a working Container Engine clustet setup.
 
 1.
 Clone the repo:
