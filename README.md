@@ -67,7 +67,7 @@ $ kubectl get svc
 
 Why not use Ingress (HTTP L7) instead of Load-Balancer (Network L4)?
 ----------------------------------------------------------------
-Ingress currently does not support load-balancing WebSockets which Mattermost requires.
+The GCLB Ingress currently does not support load-balancing WebSockets which Mattermost requires.
 
 Credits
 -------
