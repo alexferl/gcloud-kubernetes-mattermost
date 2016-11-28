@@ -24,8 +24,8 @@ $ kubectl create configmap mattermost-config --from-file=./config.template.json
 5.
 Create persistent disks for PostgreSQL and Mattermost assets:
 ```console
-$ gcloud compute disks create "mattermost-postgres" --size "20GB" --zone "us-east1-d" --type "pd-ssd"
-$ gcloud compute disks create "mattermost-assets" --size "20GB" --zone "us-east1-d" --type "pd-ssd"
+$ gcloud compute disks create "mattermost-postgres" --size "20GB" --type "pd-ssd"
+$ gcloud compute disks create "mattermost-assets" --size "20GB" --type "pd-ssd"
 ```
 6.
 Create the PostgreSQL deployment and service:
