@@ -47,6 +47,8 @@ If you want to change their names, make sure you edit the `Dockerfile` and `Cadd
 
 You will also want to edit the `Caddyfile` and replace `mm.example.com` with your own domain.
 
+Alternatively, Caddy supports [Automatic TLS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead.
+
 9.
 Build and push the reverse proxy container:
 ```console
