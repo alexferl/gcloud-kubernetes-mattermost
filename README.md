@@ -52,7 +52,7 @@ Alternatively, Caddy supports [Automatic HTTPS](https://caddyserver.com/docs/aut
 9.
 Build and push the [Caddy](https://caddyserver.com/) reverse proxy container:
 ```console
-$ docker build -t gcr.io/<project_id>/mattermost-lb
+$ docker build -t gcr.io/<project_id>/mattermost-lb .
 $ gcloud docker push gcr.io/<project_id>/mattermost-lb:latest
 ```
 10.
