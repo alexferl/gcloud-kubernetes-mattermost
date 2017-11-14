@@ -1,5 +1,5 @@
 # gcloud-kubernetes-mattermost
-This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) 4.3.x+ running on [Google Container Engine](https://cloud.google.com/container-engine/) with TLS. This guide assumes you already have a working Container Engine cluster setup.
+This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) 4.3.x+ running on [Google Container Engine](https://cloud.google.com/container-engine/) with [Let's Encrypt](https://letsencrypt.org/). This guide assumes you already have a working Container Engine cluster setup.
 
 1. Clone the repo:
 ```console
@@ -34,12 +34,9 @@ $ kubectl create -f mattermost-app-service.yaml
 ```
 8. TLS and domain name:
 
-Add your own certificate and private key to this folder. Their default names are `server.crt` and `server.key`.
-If you want to change their names, make sure you edit the `Dockerfile` and `Caddyfile`.
+[Caddy](https://caddyserver.com/) is used as a reverse proxy for its [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) and Let's Encrypt support. It assumes you're using `googlecloud` for the DNS challenge but you can use any other DNS providers supported by Caddy.
 
-You will also want to edit the `Caddyfile` and replace `mm.example.com` with your own domain.
-
-Alternatively, [Caddy](https://caddyserver.com/) supports [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead. If you do, make sure you remove the certificate and key from the `Dockerfile` and `Caddyfile` and add the appropriate config to the `Caddyfile` for Automatic HTTPS.
+You will want to edit the `Caddyfile` and replace `mm.example.com` with your own domain and `<you@email.com>` in the `Dockerfile` with your own email address. If you're using `googlecloud` you will also want to replace the content of `credentials.json` with the content a Google service account key that has `DNS Administrator` permissions.
 
 9. Build and push the Caddy reverse proxy container:
 ```console
