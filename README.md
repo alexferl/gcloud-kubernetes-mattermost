@@ -1,5 +1,5 @@
 # gcloud-kubernetes-mattermost
-This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) 4.3.x+ running on [Google Container Engine](https://cloud.google.com/container-engine/) with [Let's Encrypt](https://letsencrypt.org/). This guide assumes you already have a working Container Engine cluster setup.
+This is a basic set of resources to get [Mattermost](https://www.mattermost.org/) 4.3.x+ running on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) with [Let's Encrypt](https://letsencrypt.org/). This guide assumes you already have a working Kubernetes Engine cluster setup.
 
 1. Clone the repo:
 ```console
