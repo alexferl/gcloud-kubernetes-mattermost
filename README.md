@@ -39,9 +39,9 @@ If you want to change their names, make sure you edit the `Dockerfile` and `Cadd
 
 You will also want to edit the `Caddyfile` and replace `mm.example.com` with your own domain.
 
-Alternatively, Caddy supports [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead. If you do, make sure you remove the certificate and key from the `Dockerfile` and `Caddyfile` and add the appropriate config to the `Caddyfile` for Automatic HTTPS.
+Alternatively, [Caddy](https://caddyserver.com/) supports [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) with [Let's Encrypt](https://letsencrypt.org/) so you may use that instead. If you do, make sure you remove the certificate and key from the `Dockerfile` and `Caddyfile` and add the appropriate config to the `Caddyfile` for Automatic HTTPS.
 
-9. Build and push the [Caddy](https://caddyserver.com/) reverse proxy container:
+9. Build and push the Caddy reverse proxy container:
 ```console
 $ docker build -t gcr.io/<project_id>/mattermost-lb .
 $ gcloud docker push gcr.io/<project_id>/mattermost-lb:latest
