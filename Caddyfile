@@ -5,7 +5,10 @@ http://mm.example.com {
 https://mm.example.com {
     errors stderr
     log / stdout "{remote} - [{when}] {method} {uri} {proto} {status} {size} {>Referer} {>User-Agent}"
-    tls /etc/server.crt /etc/server.key
+
+    tls {
+        dns googlecloud
+    }
 
     proxy / mattermost-app:8065 {
         transparent
