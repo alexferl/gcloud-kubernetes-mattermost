@@ -44,7 +44,7 @@ Alternatively, [Caddy](https://caddyserver.com/) supports [Automatic HTTPS](http
 9. Build and push the Caddy reverse proxy container:
 ```console
 $ docker build -t gcr.io/<project_id>/mattermost-lb .
-$ gcloud docker push gcr.io/<project_id>/mattermost-lb:latest
+$ gcloud docker -- push gcr.io/<project_id>/mattermost-lb:latest
 ```
 10. Create the reverse proxy deployment and the load-balancer service (make sure you change the `<project_id>` in the deployment file: 
 ```console
