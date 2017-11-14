@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: mattermost/mattermost-prod-app:3
+        image: mattermost/mattermost-prod-app:latest
         imagePullPolicy: Always
         volumeMounts:
         - name: localtime

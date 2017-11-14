@@ -5,10 +5,11 @@ http://mm.example.com {
 https://mm.example.com {
     errors stderr
     log / stdout "{remote} - [{when}] {method} {uri} {proto} {status} {size} {>Referer} {>User-Agent}"
-    tls server.crt server.key
+    tls /etc/server.crt /etc/server.key
 
     proxy / mattermost-app:8065 {
         transparent
         websocket
     }
 }
+

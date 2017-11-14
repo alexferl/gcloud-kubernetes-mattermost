@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: mattermost/mattermost-prod-db:3
+        image: mattermost/mattermost-prod-db:latest
         imagePullPolicy: Always
         volumeMounts:
         - name: localtime

@@ -1,19 +1,30 @@
-FROM golang:1.7-alpine
+FROM abiosoft/caddy:builder as builder
 
-RUN echo 'http://dl-4.alpinelinux.org/alpine/v3.4/main' >> /etc/apk/repositories && \
-  apk upgrade --update && \
-  apk add curl
+ARG version="0.10.10"
+ARG plugins=""
 
-RUN curl --silent --show-error --fail --location \
-      --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
-      "https://caddyserver.com/download/build?os=linux&arch=amd64" \
-    | tar --no-same-owner -C /usr/bin/ -xz caddy \
- && chmod 0755 /usr/bin/caddy \
- && /usr/bin/caddy -version
+RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/builder.sh
 
-COPY Caddyfile server.crt server.key ./
+FROM alpine:3.6
+LABEL maintainer "Alexandre Ferland <aferlandqc@gmail.com>"
+
+LABEL caddy_version="0.10.10"
+
+# install caddy
+COPY --from=builder /install/caddy /usr/bin/caddy
+
+# validate install
+RUN /usr/bin/caddy -version
+RUN /usr/bin/caddy -plugins
+
+COPY Caddyfile /etc/Caddyfile
+COPY server.crt /etc/server.crt
+COPY server.key /etc/server.key
+
+WORKDIR /srv
 
 EXPOSE 80 443
 
-ENTRYPOINT ["caddy"]
-CMD ["--log", "stdout"]
+ENTRYPOINT ["/usr/bin/caddy"]
+CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
+
