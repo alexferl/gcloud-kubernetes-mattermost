@@ -1,17 +1,17 @@
 FROM abiosoft/caddy:builder as builder
 
-ARG version="0.10.10"
+ARG version="0.11.0"
 ARG plugins="googlecloud"
 
 RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/builder.sh
 
-FROM alpine:3.6
+FROM alpine:3.7
 LABEL maintainer "Alexandre Ferland <aferlandqc@gmail.com>"
 
 RUN apk add --no-cache ca-certificates && \
     update-ca-certificates
 
-LABEL caddy_version="0.10.10"
+LABEL caddy_version="0.11.0"
 
 # install caddy
 COPY --from=builder /install/caddy /usr/bin/caddy
